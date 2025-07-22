@@ -50,38 +50,40 @@
         .swot-t { background-color: #ffedd5; color: #f97316; } /* Orange */
         .p-icon { background-color: #eef2ff; color: #4f46e5; } /* Indigo */
         .comp-icon { background-color: #f3e8ff; color: #8b5cf6; } /* Violet */
+        .strat-icon { background-color: #dbeafe; color: #2563eb; } /* Blue-200 */
         
-        /* New Timeline Styles */
+        /* Corrected Timeline Styles */
         .timeline-wrapper {
             overflow-x: auto;
-            padding: 1rem 0;
-            -ms-overflow-style: none; /* IE and Edge */
-            scrollbar-width: none; /* Firefox */
+            padding: 2rem 0;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
         .timeline-wrapper::-webkit-scrollbar {
-            display: none; /* Chrome, Safari and Opera */
+            display: none;
         }
-        .timeline {
+        .timeline-container {
             position: relative;
-            display: flex;
+            width: 1600px; /* Fixed width to allow scrolling */
             margin: 0 auto;
-            padding: 4rem 0;
-            width: 1600px; /* Fixed width to ensure scrolling */
         }
-        .timeline::after { /* This is the line */
-            content: '';
+        .timeline-spine {
             position: absolute;
-            width: 100%;
+            top: 50%;
+            left: 0;
+            right: 0;
             height: 4px;
             background: #cbd5e1;
-            top: 50%;
             transform: translateY(-50%);
-            left: 0;
+        }
+        .timeline-milestones {
+            display: flex;
+            justify-content: space-around;
         }
         .timeline-item {
             position: relative;
-            flex-grow: 1;
-            flex-basis: 0;
+            width: 200px;
+            height: 250px;
         }
         .timeline-dot {
             position: absolute;
@@ -93,43 +95,41 @@
             background-color: white;
             border: 4px solid #0056b3;
             border-radius: 50%;
+            z-index: 2;
+        }
+        .timeline-connector {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 2.5rem;
+            background: #94a3b8;
             z-index: 1;
         }
         .timeline-content {
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            background: white;
             padding: 1rem;
+            background: white;
             border-radius: 0.75rem;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             width: 180px;
             text-align: center;
         }
-        .timeline-content::after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 0;
-            border-style: solid;
-        }
+        /* Top items */
         .timeline-item:nth-child(odd) .timeline-content {
-            bottom: 2.5rem;
+            bottom: calc(50% + 3rem);
         }
-        .timeline-item:nth-child(odd) .timeline-content::after {
-            top: 100%;
-            border-width: 10px 10px 0 10px;
-            border-color: white transparent transparent transparent;
+        .timeline-item:nth-child(odd) .timeline-connector {
+            bottom: 50%;
         }
+        /* Bottom items */
         .timeline-item:nth-child(even) .timeline-content {
-            top: 2.5rem;
+            top: calc(50% + 3rem);
         }
-        .timeline-item:nth-child(even) .timeline-content::after {
-            bottom: 100%;
-            border-width: 0 10px 10px 10px;
-            border-color: transparent transparent white transparent;
+        .timeline-item:nth-child(even) .timeline-connector {
+            top: 50%;
         }
         .timeline-year {
             font-weight: 700;
@@ -141,7 +141,7 @@
             color: #4b5563;
         }
         .timeline-crm-highlight .timeline-dot {
-            border-color: #dc2626; /* Red-600 */
+            border-color: #dc2626;
         }
         .timeline-crm-highlight .timeline-year {
             color: #dc2626;
@@ -202,6 +202,28 @@
                     <div class="card p-5"><div class="flex items-start"><div class="crm-icon-bg p-3 rounded-full mr-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H9"></path><path d="M3 9h10a2 2 0 0 1 2 2v10"></path></svg></div><div><h3 class="text-xl font-bold text-gray-800">Brand Integration</h3><p class="text-gray-500 mt-1">Aligning CRM across the portfolio.</p></div></div></div>
                 </div>
             </section>
+            
+            <!-- New Strategic Pillars Section -->
+            <section class="mb-12 md:mb-20">
+                <h2 class="text-2xl sm:text-3xl font-bold text-center text-gray-800 mb-8">Key Strategic Pillars</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Customer Segmentation -->
+                    <div class="card">
+                        <div class="card-header"><div class="strat-icon p-3 rounded-full mr-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div><h3 class="text-xl font-bold text-gray-800">Segmentation</h3></div>
+                        <div class="card-content"><p class="mb-4 text-gray-600">Leveraging CRM data to categorize guests and deliver hyper-personalized service.</p><ul class="space-y-2 text-gray-700 list-disc list-inside"><li>Business Travelers</li><li>Leisure & Family</li><li>Loyal Members</li><li>New Guests</li></ul></div>
+                    </div>
+                    <!-- Change Management -->
+                    <div class="card">
+                        <div class="card-header"><div class="strat-icon p-3 rounded-full mr-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12h-8l-4 4H4V4h4l4-4h8z"></path><path d="M12 12v8"></path><path d="M12 2v4"></path></svg></div><h3 class="text-xl font-bold text-gray-800">Change Management</h3></div>
+                        <div class="card-content"><p class="mb-4 text-gray-600">Driving a massive organizational shift towards a relationship-driven culture.</p><ul class="space-y-2 text-gray-700 list-disc list-inside"><li>Top-Down Support</li><li>Employee Training</li><li>Incentivized Adoption</li><li>Cultural Shift</li></ul></div>
+                    </div>
+                    <!-- Franchisee Relations -->
+                    <div class="card">
+                        <div class="card-header"><div class="strat-icon p-3 rounded-full mr-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a7 7 0 0 0 7-7h-4a3 3 0 0 1-3-3V8a3 3 0 0 1-3-3H5a7 7 0 0 0 7 7v4a3 3 0 0 1 3 3h4a7 7 0 0 0-7-7Z"></path><path d="M22 12V2"></path></svg></div><h3 class="text-xl font-bold text-gray-800">Franchisee Relations</h3></div>
+                        <div class="card-content"><p class="mb-4 text-gray-600">Overcoming resistance to CRM rollout by demonstrating clear value and ROI.</p><ul class="space-y-2 text-gray-700 list-disc list-inside"><li>Proved ROI with pilots</li><li>Provided full training</li><li>Shared revenue data</li><li>Created active partners</li></ul></div>
+                    </div>
+                </div>
+            </section>
 
             <!-- SWOT Analysis Section -->
             <section class="mb-12 md:mb-20">
@@ -254,54 +276,64 @@
             <section>
                 <h2 class="text-2xl sm:text-3xl font-bold text-center text-gray-800 mb-8">A Legacy of Innovation</h2>
                 <div class="timeline-wrapper">
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-content">
-                                <p class="timeline-year">1919</p>
-                                <p class="timeline-milestone">First Hotel Opens</p>
+                    <div class="timeline-container">
+                        <div class="timeline-spine"></div>
+                        <div class="timeline-milestones">
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-content">
+                                    <p class="timeline-year">1919</p>
+                                    <p class="timeline-milestone">First Hotel Opens</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-content">
-                                <p class="timeline-year">1955</p>
-                                <p class="timeline-milestone">First Loyalty Program</p>
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-content">
+                                    <p class="timeline-year">1955</p>
+                                    <p class="timeline-milestone">First Loyalty Program</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-content">
-                                <p class="timeline-year">1987</p>
-                                <p class="timeline-milestone">Hilton Honors Launches</p>
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-content">
+                                    <p class="timeline-year">1987</p>
+                                    <p class="timeline-milestone">Hilton Honors Launches</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="timeline-item timeline-crm-highlight">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-content">
-                                <p class="timeline-year">2002</p>
-                                <p class="timeline-milestone">"Customers Really Matter" CRM Initiative</p>
+                            <div class="timeline-item timeline-crm-highlight">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-content">
+                                    <p class="timeline-year">2002</p>
+                                    <p class="timeline-milestone">"Customers Really Matter" CRM Initiative</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="timeline-item timeline-crm-highlight">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-content">
-                                <p class="timeline-year">2004</p>
-                                <p class="timeline-milestone">OnQ Platform Deployed</p>
+                            <div class="timeline-item timeline-crm-highlight">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-content">
+                                    <p class="timeline-year">2004</p>
+                                    <p class="timeline-milestone">OnQ Platform Deployed</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-content">
-                                <p class="timeline-year">2017</p>
-                                <p class="timeline-milestone">Splits into 3 Companies</p>
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-content">
+                                    <p class="timeline-year">2017</p>
+                                    <p class="timeline-milestone">Splits into 3 Companies</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-content">
-                                <p class="timeline-year">2022</p>
-                                <p class="timeline-milestone">Digital Key Expansion</p>
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-content">
+                                    <p class="timeline-year">2022</p>
+                                    <p class="timeline-milestone">Digital Key Expansion</p>
+                                </div>
                             </div>
                         </div>
                     </div>
